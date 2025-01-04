@@ -1,0 +1,49 @@
+/*  ------------------------------------------------  */
+/*  ----------  /udemy.antonydev.tech/  ------------  */
+/*  ----------  /curso-html5-desde-cero/  ----------  */
+/*  ----------  /index.html  -----------------------  */
+/*  ------------------------------------------------  */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    
+    margin: auto;
+    width: 100%;
+    min-height: 100vh; /* Altura mínima de la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    font-family: Arial, sans-serif;
+}
+
+
+.layout__navbar {
+    width: 100%;
+    background-color: bisque;
+}
+
+.layout__content {
+    width: 100%;
+    max-width: 1600px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    background-color: #eeeeee;
+    flex-grow: 1;
+}
+
+.layout-footer {
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-bottom: 0;
+}
