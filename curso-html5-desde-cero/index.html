@@ -9,15 +9,21 @@
 <html lang="es">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="./assets/favicon/html5-favicon.ico" type="image/x-icon">
     <title> Curso HTML 5 desde Cero </title>
 
     <link rel="stylesheet" href="./assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/estilos.css" />
 
     <script src="./assets/jquery/core/jquery-3.7.1.min.js"> </script>
-    <script src="./assets/js/main.js" defer> </script>
+    
+    <script type="module" src="./assets/js/main.js" defer> </script>
+    <script type="module" src="./assets/js/section-html.js" defer> </script>
+    <script type="module" src="./assets/js/section-proyecto.js" defer> </script>
+    <script type="module" src="./assets/js/section-css.js" defer> </script>
 
 </head>
 
@@ -33,25 +39,35 @@
         <ul class="navbar__list">
 
             <li class="navbar__item">
-                <a href="#"> Aprendiendo HTML </a>
-                <ul class="navbar-html__list">
-                    <li class="navbar-html__item"> <a href="#" id="htmlEstructura"> Estructura </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlListas"> Listas </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlImagenes"> Imagenes </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlAudio"> Audio </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlVideo"> Video </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlIFrame"> iFrame </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlTablas"> Tablas </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlFormularios"> Formularios </a> </li>
-                    <li class="navbar-html__item"> <a href="#" id="htmlEtiquetas"> Mas Etiquetas en HTML 5 </a> </li>
+                <a href="#" id="htmlIndex"> Aprendiendo HTML </a>
+                <ul class="navbar-submenu__list">
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlEstructura"> Estructura </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlListas"> Listas </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlImagenes"> Imagenes </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlAudio"> Audio </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlVideo"> Video </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlIFrame"> iFrame </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlTablas"> Tablas </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlFormularios"> Formularios </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="htmlEtiquetas"> Mas Etiquetas </a> </li>
                 </ul>
             </li>
+            
+            <li class="navbar__item"> 
+                <a href="#" id="proyectoIndex"> Proyecto HTML </a> 
+                <ul class="navbar-submenu__list">
+                    <li class="navbar-submenu__item"> <a href="#" id="proyectoMultimedia"> Multimedia </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="proyectoDieta"> Dieta </a> </li>
+                    <li class="navbar-submenu__item"> <a href="#" id="proyectoContacto"> Contacto </a> </li>
+                </ul>
+            </li>
+            
+            <li class="navbar__item"> 
+                <a href="#" id="cssIndex" > Aprendiendo CSS </a> 
+            </li>
 
-
-
-            <li class="navbar__item"> <a href="#"> Proyecto HTML </a> </li>
-            <li class="navbar__item"> <a href="#"> Aprendiendo CSS </a> </li>
         </ul>
+
     </nav>
 
     <hr>
@@ -68,5 +84,3 @@
 </body>
 
 </html>
-
-<!-- './assets/audios/audios.mp3' -->
