@@ -95,11 +95,17 @@ body {
     padding-bottom: 40px;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 20px;
     background-color: #eeeeee;
     flex-grow: 1;
 }
 
+.banner {
+    max-width: 800px;
+    width: 100%;
+    height: auto;
+}
 
 
 /*  -----  Footer  -----  */

@@ -1,0 +1,122 @@
+/*  --------------------------------------------------  */
+/*  ----------  /udemy.antonydev.tech/  --------------  */
+/*  ----------  /curso-html5-desde-cero/  ------------  */
+/*  ----------  /assets/css/selectores.css  ----------  */
+/*  --------------------------------------------------  */
+
+
+/*  -----  Contenido GLOBAL  -----  */
+
+body {
+    
+    margin: auto;
+    width: 100%;
+    min-height: 100vh; /* Altura mínima de la pantalla */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+
+.layout__content {
+    width: 100%;
+    max-width: 1600px;
+    padding: 0 60px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    background-color: #eeeeee;
+    flex-grow: 1;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+#titulo {
+    background: red;
+    color: gray;
+    padding: 10px;
+}
+
+a {
+    font-size: 18px;
+    color: green;
+    text-decoration: none;
+}
+
+footer a {
+    color: red;
+}
+
+
+#descripcion,
+#titulo {
+    border: 5px solid black;
+    padding: 15px;
+}
+
+#titulo {
+    background: blue;
+    border: dashed;
+}
+
+
+.parrafo {
+    font-style: italic;
+    font-weight: bold;
+}
+
+.parrafo1, .parrafo3 {
+    background: green;
+    color: white;
+    padding: 10px;
+}
+
+.parrafo3 {
+    background-color: orange;
+    color: black;
+    padding: 10px;
+    ;
+}
+
+#usuario form {
+    border: 5px solid blue;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    ;
+    padding: 20px;
+
+}
+
+#usuario form * {
+    display: block;
+}
+
+input[type="text"] {
+    margin-bottom: 15px;
+    padding: 15px;
+    width: 300px;
+}
+
+input[type="submit"] {
+    background: green;
+    color: white;
+    padding: 15px;
+    font-size: 17px;
+    text-transform: uppercase;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+
+#menu > li > a {
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+}
+
+#saludo h2 {
+    background: brown;
+}

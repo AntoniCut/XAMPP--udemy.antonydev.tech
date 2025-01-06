@@ -24,7 +24,7 @@ $(function () {
     //  ------------------------------------------------------------------
     //  ----------  Función para manejar la carga de contenido  ----------
     //  ------------------------------------------------------------------
-    
+
     function loadContent($container, url, title, path, favicon) {
 
         $container.load(url, function (response, status, xhr) {
@@ -51,7 +51,7 @@ $(function () {
 
                 //  -----  Si No existe lo crea  -----
                 if ($favicon.length === 0) $favicon = $('<link rel="icon" type="image/x-icon">').appendTo('head');
-                
+
                 //  -----  Cambia la ruta del favicon con una linea de tiempo para no ser cacheado  -----
                 $favicon.attr('href', `${favicon}?t=${new Date().getTime()}`);
 
@@ -66,8 +66,27 @@ $(function () {
     const initialPath = window.location.pathname.replace(base, '');
     const initialSection = allSections.find(section => section.path === initialPath);
 
-    if (initialSection) loadContent($layoutContent, initialSection.url, initialSection.title, initialSection.path, initialSection.favicon);
-    else $layoutContent.load(`${base}/aprendiendo-html5/index.html`);
+    if (initialSection) {
+        
+        loadContent(
+            $layoutContent, 
+            initialSection.url, 
+            initialSection.title, 
+            initialSection.path, 
+            initialSection.favicon
+        );
+    }
+    
+    else {
+        
+        loadContent(
+            $layoutContent,
+            `${base}/aprendiendo-html5/index.html`,
+            'Aprendiendo HTML 5',
+            '/aprendiendo-html5/index.html',
+            `${base}/assets/favicon/html5-favicon.ico`
+        );
+    }
 
 
     //  -----------------------------------------------------------
@@ -75,7 +94,7 @@ $(function () {
     //  -----------------------------------------------------------
     $(document).on('click', 'a[id]', function (event) {
 
-        event.preventDefault(); // Previene el comportamiento predeterminado
+        event.preventDefault();
 
         const id = $(this).attr('id');
         //const section = sections.find(sec => sec.id === id);

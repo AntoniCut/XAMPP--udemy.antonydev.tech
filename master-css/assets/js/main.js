@@ -6,6 +6,7 @@
 
 
 import { sectionHtml } from './section-html.js';
+import { sectionCss } from './section-css.js';
 
 
 
@@ -16,13 +17,12 @@ $(function () {
     const $layoutContent = $('#layoutContent');
 
     const base = '/udemy.antonydev.tech/master-css';
-    //const base = '/curso-html5-desde-cero';
-
-    //const allSections = [...sectionHtml, ...sectionProyecto, ...sectionCss];
-    const allSections = [...sectionHtml];
-
     
-    function loadContent($container, url, title, path, favicon) {
+    //const allSections = [...sectionHtml, ...sectionProyecto, ...sectionCss];
+    const allSections = [...sectionHtml, ...sectionCss];
+
+
+    function loadContent($container, url, title, path, favicon, cssFile) {
 
         $container.load(url, function (response, status, xhr) {
 
@@ -34,23 +34,66 @@ $(function () {
 
                 console.log(`Contenido cargado desde: ${url}`);
 
-                //  -----  Cambiamos el title de la página  -----
+                //  -----  Cambiamos el TITLE de la página  -----
                 document.title = title;
 
-                //  -----  cambiamos la url de la página  -----
+                //  -----  cambiamos la URL de la página  -----
                 const newUrl = `${base}${path}`;
                 history.pushState(null, '', newUrl);
                 console.log(`URL actualizada a: ${newUrl}`);
 
-                //  -----  cambiamos el favicon de la página  -----
-
+                //  -----  cambiamos el FAVICON de la página  -----
                 let $favicon = $('link[rel~="icon"]');
 
-                //  -----  Si No existe lo crea  -----
+                //  -----  Si No existe el favicon lo crea  -----
                 if ($favicon.length === 0) $favicon = $('<link rel="icon" type="image/x-icon">').appendTo('head');
-                
+
                 //  -----  Cambia la ruta del favicon con una linea de tiempo para no ser cacheado  -----
                 $favicon.attr('href', `${favicon}?t=${new Date().getTime()}`);
+
+
+                //  -----  Cargamos los ESTILOS de la página  -----
+                
+                
+                // Inyectar hoja de estilos específica si es proporcionada
+                
+                if (cssFile) {
+                    alert(cssFile); // Comprobación de la URL que se va a cargar
+                
+                    // Eliminar cualquier hoja de estilos existente que coincida con el patrón base del proyecto, excepto navbar.css
+                    $('link[rel="stylesheet"]').not('[href*="navbar.css"]').remove();
+                
+                    // Asegurarse de que siempre esté cargada la hoja de estilos navbar.css
+                    if ($('link[href*="navbar.css"]').length === 0) {
+                        $('<link rel="stylesheet">')
+                            .attr('href', `${base}/assets/css/navbar.css?t=${new Date().getTime()}`)
+                            .appendTo('head');
+                    }
+                
+                    // Agregar la nueva hoja de estilos con un timestamp para evitar caché
+                    $('<link rel="stylesheet">')
+                        .attr('href', `${cssFile}?t=${new Date().getTime()}`)
+                        .appendTo('head');
+                }
+                
+                
+
+                // if (cssFile) {
+                    
+                //     const $existingLink = $(`link[href="${cssFile}"]`);
+                       
+                //     if ($existingLink.length === 0) {
+                //         $('<link rel="stylesheet">')
+                //             .attr('href', `${cssFile}?t=${new Date().getTime()}`)  // Agregar un parámetro único para evitar la caché
+                //             .appendTo('head');
+
+                //     } else {
+                //         $existingLink.attr('href', `${cssFile}?t=${new Date().getTime()}`);  // Actualizar el atributo href si ya existe
+                //     }
+                    
+                //     alert(cssFile);
+                   
+                // }
 
             }
         });
@@ -63,8 +106,29 @@ $(function () {
     const initialPath = window.location.pathname.replace(base, '');
     const initialSection = allSections.find(section => section.path === initialPath);
 
-    if (initialSection) loadContent($layoutContent, initialSection.url, initialSection.title, initialSection.path, initialSection.favicon);
-    else $layoutContent.load(`${base}/repaso-html/index.html`);
+    if (initialSection) {
+        
+        loadContent(
+            $layoutContent, 
+            initialSection.url, 
+            initialSection.title, 
+            initialSection.path, 
+            initialSection.favicon, 
+            initialSection.styles
+        );
+    }
+
+    else {
+         
+        loadContent(
+            $layoutContent,
+            `${base}/aprendiendo-css/index.html`,
+            'Master de CSS',
+            '/aprendiendo-css/index.html',
+            `${base}/assets/favicon/css-favicon.ico`,
+            `${base}/assets/css/styles.css`
+        );
+    }
 
 
     //  -----------------------------------------------------------
@@ -80,7 +144,7 @@ $(function () {
 
         if (section) {
             console.log(`Clic en: ${id}`);
-            loadContent($layoutContent, section.url, section.title, section.path, section.favicon);
+            loadContent($layoutContent, section.url, section.title, section.path, section.favicon, section.styles);
         }
     });
 
@@ -95,9 +159,9 @@ $(function () {
         const matchedSection = allSections.find(section => section.path === window.location.pathname.replace(base, ''));
 
         if (matchedSection) {
-            loadContent($layoutContent, matchedSection.url, matchedSection.title, matchedSection.path, matchedSection.favicon);
+            loadContent($layoutContent, matchedSection.url, matchedSection.title, matchedSection.path, matchedSection.favicon, matchedSection.styles);
         } else {
-            $layoutContent.load(`${base}/repaso-html/index.html`);
+            $layoutContent.load(`${base}/aprendiendo-css/selectores/index.html`);
         }
     });
 
