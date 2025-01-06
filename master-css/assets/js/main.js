@@ -1,13 +1,12 @@
 //  ------------------------------------------------
 //  ----------  /udemy.antonydev.tech/  ------------
-//  ----------  /curso-html5-desde-cero/  ----------
+//  ----------  /master-css/  ----------------------
 //  ----------  /assets/js/main.js  ----------------
 //  ------------------------------------------------
 
 
 import { sectionHtml } from './section-html.js';
-import { sectionProyecto } from './section-proyecto.js';
-import { sectionCss } from './section-css.js';
+
 
 
 $(function () {
@@ -16,14 +15,12 @@ $(function () {
 
     const $layoutContent = $('#layoutContent');
 
-    const base = '/udemy.antonydev.tech/curso-html5-desde-cero';
+    const base = '/udemy.antonydev.tech/master-css';
     //const base = '/curso-html5-desde-cero';
 
-    const allSections = [...sectionHtml, ...sectionProyecto, ...sectionCss];
+    //const allSections = [...sectionHtml, ...sectionProyecto, ...sectionCss];
+    const allSections = [...sectionHtml];
 
-    //  ------------------------------------------------------------------
-    //  ----------  Función para manejar la carga de contenido  ----------
-    //  ------------------------------------------------------------------
     
     function loadContent($container, url, title, path, favicon) {
 
@@ -67,7 +64,7 @@ $(function () {
     const initialSection = allSections.find(section => section.path === initialPath);
 
     if (initialSection) loadContent($layoutContent, initialSection.url, initialSection.title, initialSection.path, initialSection.favicon);
-    else $layoutContent.load(`${base}/aprendiendo-html5/index.html`);
+    else $layoutContent.load(`${base}/repaso-html/index.html`);
 
 
     //  -----------------------------------------------------------
@@ -100,7 +97,7 @@ $(function () {
         if (matchedSection) {
             loadContent($layoutContent, matchedSection.url, matchedSection.title, matchedSection.path, matchedSection.favicon);
         } else {
-            $layoutContent.load(`${base}/aprendiendo-html5/index.html`);
+            $layoutContent.load(`${base}/repaso-html/index.html`);
         }
     });
 
