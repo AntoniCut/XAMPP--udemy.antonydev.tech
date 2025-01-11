@@ -9,6 +9,7 @@ import { sectionHtml } from './section-html.js';
 import { sectionCss } from './section-css.js';
 import { sectionSass } from './section-sass.js';
 import { sectionLess } from './section-less.js';
+import { sectionResponsive } from './section-responsive.js';
 
 
 
@@ -24,7 +25,8 @@ $(function () {
         ...sectionHtml, 
         ...sectionCss, 
         ...sectionSass,
-        ...sectionLess
+        ...sectionLess,
+        ...sectionResponsive
     ];
 
 

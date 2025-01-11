@@ -1,0 +1,130 @@
+/*  --------------------------------------------------  */
+/*  ----------  /udemy.antonydev.tech/  --------------  */
+/*  ----------  /master-css/  ------------------------  */
+/*  ----------  /assets/css/responsive.css  ----------  */
+/*  --------------------------------------------------  */
+
+
+/*  -----  Responsive  -----  */
+
+* {
+    margin: 0px;
+    padding: 0px;
+
+}
+
+.clearfix {
+    float: none;
+    clear: both;
+}
+
+#container {
+    width: 75%;
+    margin: 0px auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    background: red;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 150px;
+    background: lightskyblue;
+    /*color: #3333;*/
+    line-height: 150px;
+    text-align: center;
+}
+
+aside {
+    width: 25%;
+    min-height: 700px;
+    float: left;
+    background: #ccc;
+    text-align: center;
+    line-height: 700px;
+}
+
+#articles {
+    width: 75%;
+    min-height: 700px;
+    float: left;
+    background-color: lemonchiffon;
+}
+
+#articles article {
+    width: 30%;
+    height: 150px;
+    color: white;
+    background: green;
+    line-height: 150px;
+    text-align: center;
+    border: 2px solid white;
+    float: left;
+    margin: 15px;
+}
+
+footer .footer-responsive {
+    float: left;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    text-align: center !important;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+
+/*  *****  RESPONSIVE  *****  */
+
+/*  Desde la anchura 0px hasta la anchura 888px de pantalla  */
+@media (max-width: 888px) {
+
+    /*  Se ejecutaran estos Estilos  */
+    header h1 {
+        font-size: 18px;
+    }
+
+    #articles article {
+        width: 40%;
+        background: red;
+    }
+}
+
+@media (max-width: 632px) {
+    /*  Se ejecutaran estos Estilos  */
+
+    #container {
+        overflow: hidden;
+    }
+
+    #articles {
+        width: 100%;
+    }
+
+    aside {
+        float: none;
+        min-height: auto;
+        line-height: 20px;
+        width: 91%;
+        padding: 19px;
+        ;
+    }
+
+
+    #articles article {
+        width: 90%;
+        background: blue;
+    }
+
+}
+
+@media (max-width: 554px) {
+
+    /*  Se ejecutaran estos Estilos  */
+    body {
+        background: salmon;
+    }
+
+}
