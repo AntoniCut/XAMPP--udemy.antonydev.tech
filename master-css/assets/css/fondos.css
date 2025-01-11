@@ -1,0 +1,40 @@
+/*  ----------------------------------------------  */
+/*  ----------  /udemy.antonydev.tech/  ----------  */
+/*  ----------  /master-css/  --------------------  */
+/*  ----------  /assets/css/fondos.css  ----------  */
+/*  ----------------------------------------------  */
+
+
+/*  -----  Fondos  -----  */
+
+.container {
+    width: 100%;
+    min-height: 100vh; /* Ocupa al menos la altura de la ventana */
+    background: url(localhost/udemy.antonydev.tech/master-css/assets/imagenes/fondo1.jpeg);
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    /* background-color: aqua; */
+    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+    background-position: center; /* Centra la imagen */
+}
+
+
+
+#caja {
+    border: 5px solid black;
+    padding: 10px;
+    background-color: rgba(0, 68, 255, 0.507);
+    color: white;
+    font-family:'Courier New', Courier, monospace;
+    text-align: center;
+    line-height: 20px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    /*vertical-align: top;*/
+}
+
+h2 {
+    color: red;
+    background: black;
+    border: 5px solid red;
+}

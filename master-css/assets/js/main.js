@@ -53,20 +53,21 @@ $(function () {
 
 
                 //  -----  Cargamos los ESTILOS de la página  -----
-                
-                
+                                
                 // Inyectar hoja de estilos específica si es proporcionada
                 
                 if (cssFile) {
-                    alert(cssFile); // Comprobación de la URL que se va a cargar
+                    
+                    //  -----  Comprobación de la URL que se va a cargar  -----
+                    //alert(cssFile); 
                 
                     // Eliminar cualquier hoja de estilos existente que coincida con el patrón base del proyecto, excepto navbar.css
-                    $('link[rel="stylesheet"]').not('[href*="navbar.css"]').remove();
+                    $('link[rel="stylesheet"]').not('[href*="styles.css"]').remove();
                 
                     // Asegurarse de que siempre esté cargada la hoja de estilos navbar.css
                     if ($('link[href*="navbar.css"]').length === 0) {
                         $('<link rel="stylesheet">')
-                            .attr('href', `${base}/assets/css/navbar.css?t=${new Date().getTime()}`)
+                            .attr('href', `${base}/assets/css/styles.css?t=${new Date().getTime()}`)
                             .appendTo('head');
                     }
                 
@@ -75,26 +76,7 @@ $(function () {
                         .attr('href', `${cssFile}?t=${new Date().getTime()}`)
                         .appendTo('head');
                 }
-                
-                
-
-                // if (cssFile) {
-                    
-                //     const $existingLink = $(`link[href="${cssFile}"]`);
-                       
-                //     if ($existingLink.length === 0) {
-                //         $('<link rel="stylesheet">')
-                //             .attr('href', `${cssFile}?t=${new Date().getTime()}`)  // Agregar un parámetro único para evitar la caché
-                //             .appendTo('head');
-
-                //     } else {
-                //         $existingLink.attr('href', `${cssFile}?t=${new Date().getTime()}`);  // Actualizar el atributo href si ya existe
-                //     }
-                    
-                //     alert(cssFile);
-                   
-                // }
-
+                               
             }
         });
     }
@@ -125,7 +107,7 @@ $(function () {
             `${base}/aprendiendo-css/index.html`,
             'Master de CSS',
             '/aprendiendo-css/index.html',
-            `${base}/assets/favicon/css-favicon.ico`,
+            `${base}/assets/favicon/css3-favicon.ico`,
             `${base}/assets/css/styles.css`
         );
     }

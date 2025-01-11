@@ -1,38 +1,11 @@
 /*  --------------------------------------------------  */
 /*  ----------  /udemy.antonydev.tech/  --------------  */
-/*  ----------  /curso-html5-desde-cero/  ------------  */
+/*  ----------  /master-css/  ------------------------  */
 /*  ----------  /assets/css/selectores.css  ----------  */
 /*  --------------------------------------------------  */
 
 
-/*  -----  Contenido GLOBAL  -----  */
-
-body {
-    
-    margin: auto;
-    width: 100%;
-    min-height: 100vh; /* Altura mínima de la pantalla */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: Arial, sans-serif;
-}
-
-.layout__content {
-    width: 100%;
-    max-width: 1600px;
-    padding: 0 60px;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-    background-color: #eeeeee;
-    flex-grow: 1;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-}
-
+/*  -----  SELECTORES  -----  */
 
 #titulo {
     background: red;
