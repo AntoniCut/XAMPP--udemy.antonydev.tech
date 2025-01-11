@@ -7,6 +7,8 @@
 
 import { sectionHtml } from './section-html.js';
 import { sectionCss } from './section-css.js';
+import { sectionSass } from './section-sass.js';
+import { sectionLess } from './section-less.js';
 
 
 
@@ -18,8 +20,12 @@ $(function () {
 
     const base = '/udemy.antonydev.tech/master-css';
     
-    //const allSections = [...sectionHtml, ...sectionProyecto, ...sectionCss];
-    const allSections = [...sectionHtml, ...sectionCss];
+    const allSections = [
+        ...sectionHtml, 
+        ...sectionCss, 
+        ...sectionSass,
+        ...sectionLess
+    ];
 
 
     function loadContent($container, url, title, path, favicon, cssFile) {
@@ -54,8 +60,6 @@ $(function () {
 
                 //  -----  Cargamos los ESTILOS de la página  -----
                                 
-                // Inyectar hoja de estilos específica si es proporcionada
-                
                 if (cssFile) {
                     
                     //  -----  Comprobación de la URL que se va a cargar  -----
@@ -65,7 +69,7 @@ $(function () {
                     $('link[rel="stylesheet"]').not('[href*="styles.css"]').remove();
                 
                     // Asegurarse de que siempre esté cargada la hoja de estilos navbar.css
-                    if ($('link[href*="navbar.css"]').length === 0) {
+                    if ($('link[href*="styles.css"]').length === 0) {
                         $('<link rel="stylesheet">')
                             .attr('href', `${base}/assets/css/styles.css?t=${new Date().getTime()}`)
                             .appendTo('head');
