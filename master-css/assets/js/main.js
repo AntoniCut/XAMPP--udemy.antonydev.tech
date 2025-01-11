@@ -10,6 +10,8 @@ import { sectionCss } from './section-css.js';
 import { sectionSass } from './section-sass.js';
 import { sectionLess } from './section-less.js';
 import { sectionResponsive } from './section-responsive.js';
+import { sectionFlexBox } from './section-flexbox.js';
+import { sectionGridLayout } from './section-gridlayout.js';
 
 
 
@@ -26,7 +28,9 @@ $(function () {
         ...sectionCss, 
         ...sectionSass,
         ...sectionLess,
-        ...sectionResponsive
+        ...sectionResponsive,
+        ...sectionFlexBox,
+        ...sectionGridLayout
     ];
 
 
