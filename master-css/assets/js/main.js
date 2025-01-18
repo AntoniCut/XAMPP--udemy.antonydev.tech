@@ -12,6 +12,7 @@ import { sectionLess } from './section-less.js';
 import { sectionResponsive } from './section-responsive.js';
 import { sectionFlexBox } from './section-flexbox.js';
 import { sectionGridLayout } from './section-gridlayout.js';
+import { sectionBootstrap } from './section-bootstrap.js';
 
 
 
@@ -22,19 +23,26 @@ $(function () {
     const $layoutContent = $('#layoutContent');
 
     const base = '/udemy.antonydev.tech/master-css';
-    
+
     const allSections = [
-        ...sectionHtml, 
-        ...sectionCss, 
+        ...sectionHtml,
+        ...sectionCss,
         ...sectionSass,
         ...sectionLess,
         ...sectionResponsive,
         ...sectionFlexBox,
-        ...sectionGridLayout
+        ...sectionGridLayout,
+        ...sectionBootstrap
     ];
 
 
-    function loadContent($container, url, title, path, favicon, cssFile) {
+
+
+    //  ----------------------------------------------------------------------------------------------------
+    //  ----------  Función que Carga el HTML Dinamicamente utilizando la función load de jQuery  ----------
+    //  ----------------------------------------------------------------------------------------------------
+
+    function loadContent($container, url, title, path, favicon, cssFile, scriptFile) {
 
         $container.load(url, function (response, status, xhr) {
 
@@ -65,31 +73,78 @@ $(function () {
 
 
                 //  -----  Cargamos los ESTILOS de la página  -----
-                                
+
                 if (cssFile) {
-                    
+
                     //  -----  Comprobación de la URL que se va a cargar  -----
                     //alert(cssFile); 
-                
-                    // Eliminar cualquier hoja de estilos existente que coincida con el patrón base del proyecto, excepto navbar.css
+
+                    //  ----- Eliminar cualquier hoja de estilos existente que coincida  -----
+                    //  ----- con el patrón base del proyecto, excepto dtyles.css        -----
                     $('link[rel="stylesheet"]').not('[href*="styles.css"]').remove();
-                
-                    // Asegurarse de que siempre esté cargada la hoja de estilos navbar.css
+
+                    //  -----  Asegurarse de que siempre esté cargada la hoja de estilos styles.css  -----
                     if ($('link[href*="styles.css"]').length === 0) {
                         $('<link rel="stylesheet">')
                             .attr('href', `${base}/assets/css/styles.css?t=${new Date().getTime()}`)
                             .appendTo('head');
                     }
-                
-                    // Agregar la nueva hoja de estilos con un timestamp para evitar caché
+
+                    //  -----  Agregar la nueva hoja de estilos con un timestamp para evitar caché  -----
                     $('<link rel="stylesheet">')
                         .attr('href', `${cssFile}?t=${new Date().getTime()}`)
                         .appendTo('head');
+
+                    //  -----  Agregar la hoja de estilos de Bootstrap 4  -----
+                    $('<link rel="stylesheet">')
+                        .attr('href', `${base}/assets/bootstrap-4/css/bootstrap.min.css?t=${new Date().getTime()}`)
+                        .appendTo('head');
                 }
-                               
+
+
+                //  -----  Cargar script de las secciones  -----
+                if (scriptFile) {
+                    loadScriptIfExists(scriptFile);
+                }
+
+
             }
         });
     }
+
+
+
+    //  ------------------------------------------------------------------
+    //  ----------  Función que Carga un Script si este Existe  ----------
+    //  ------------------------------------------------------------------
+
+    function loadScriptIfExists(scriptUrl) {
+        
+        const script = `${scriptUrl}?t=${new Date().getTime()}`;
+
+        return $.ajax({
+            
+            url: script,
+            type: 'HEAD', // Verifica si el script existe
+            
+            success: function () {
+                
+                console.log(`El script ${script} existe. Procediendo a cargarlo...`);
+                
+                $.getScript(script)
+                    .done(function () {
+                        console.log(`Script cargado exitosamente: ${script}`);
+                    })
+                    .fail(function (jqxhr, settings, exception) {
+                        console.error(`Error al cargar el script ${script}:`, exception);
+                    });
+            },
+            error: function () {
+                console.warn(`El script ${script} no existe. No se cargará.`);
+            }
+        });
+    }
+
 
 
     //  ------------------------------------------------
@@ -99,19 +154,20 @@ $(function () {
     const initialSection = allSections.find(section => section.path === initialPath);
 
     if (initialSection) {
-        
+
         loadContent(
-            $layoutContent, 
-            initialSection.url, 
-            initialSection.title, 
-            initialSection.path, 
-            initialSection.favicon, 
-            initialSection.styles
+            $layoutContent,
+            initialSection.url,
+            initialSection.title,
+            initialSection.path,
+            initialSection.favicon,
+            initialSection.styles,
+            initialSection.script
         );
     }
 
     else {
-         
+
         loadContent(
             $layoutContent,
             `${base}/aprendiendo-css/index.html`,
@@ -135,8 +191,17 @@ $(function () {
         const section = allSections.find(sec => sec.id === id);
 
         if (section) {
+
             console.log(`Clic en: ${id}`);
-            loadContent($layoutContent, section.url, section.title, section.path, section.favicon, section.styles);
+            loadContent(
+                $layoutContent,
+                section.url,
+                section.title,
+                section.path,
+                section.favicon,
+                section.styles,
+                section.script
+            );
         }
     });
 
@@ -151,7 +216,16 @@ $(function () {
         const matchedSection = allSections.find(section => section.path === window.location.pathname.replace(base, ''));
 
         if (matchedSection) {
-            loadContent($layoutContent, matchedSection.url, matchedSection.title, matchedSection.path, matchedSection.favicon, matchedSection.styles);
+            loadContent(
+                $layoutContent,
+                matchedSection.url,
+                matchedSection.title,
+                matchedSection.path,
+                matchedSection.favicon,
+                matchedSection.styles,
+                matchedSection.script
+            );
+
         } else {
             $layoutContent.load(`${base}/aprendiendo-css/selectores/index.html`);
         }

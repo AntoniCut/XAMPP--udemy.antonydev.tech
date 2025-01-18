@@ -16,6 +16,11 @@ body {
     font-family: Arial, sans-serif;
 }
 
+hr {
+    width: 100%;
+    height: 2px;
+    background-color: cornflowerblue;
+}
 
 /*  **********  Menú de Navegación  **********  */
 
