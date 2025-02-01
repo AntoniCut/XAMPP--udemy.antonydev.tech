@@ -6,158 +6,188 @@
 //  ----------------------------------------------
 
 
+import { sectionPortafolio } from './assets/js/section-portafolio.js';
 
-$(document).ready(function () {
 
-    console.warn($.fn.jquery);
+$(function () {
 
-    const $layoutContent = $("#layoutContent");
 
-    //  -----  Ruta Base del Proyecto  -----
+    console.warn('main.js is loaded - jQuery is ready! - version:', $.fn.jquery);
+
+    const $layoutContent = $('#layoutContent');
+
     const base = '/udemy.antonydev.tech/master-css3-avanzado/portafolio';
 
-
-    //  -----  Rutas HTML  -----
-    const homeHtml = `${base}/home/index.html`;
-    const sobreMiHtml = `${base}/sobre-mi/index.html`;
-    const curriculumHtml = `${base}/curriculum/index.html`;
-    const portafolioHtml = `${base}/portafolio/index.html`;
-    const blogHtml = `${base}/blog/index.html`;
-    const contactoHtml = `${base}/contacto/index.html`;
-
-    //  -----  Rutas CSS  -----
-    const allCss = `${base}/assets/fonts/fontawesome-free-6.1.2-web/css/all.min.css`;
-    const poppinsCss = `${base}/assets/fonts/poppins/poppins.css`;
-    const resetCss = `${base}/assets/css/reset.css`;
-    const scrollCss = `${base}/assets/css/scroll.css`;
-    const stylesCss = `${base}/assets/css/styles.css`;
-    const loaderCss = `${base}/assets/css/loader.css`;
-    const responsiveCss = `${base}/assets/css/responsive.css`;
+    const allSections = [
+        ...sectionPortafolio,
+    ];
 
 
-    loadCss();
-    loadHtml(homeHtml);
+
+    //  ----------------------------------------------------------------------------------------------------
+    //  ----------  Función que Carga el HTML Dinamicamente utilizando la función load de jQuery  ----------
+    //  ----------------------------------------------------------------------------------------------------
+
+    function loadContent($container, url, title, path, favicon, scriptFile) {
+
+        $container.load(url, function (response, status, xhr) {
+
+            if (status === "error") {
+                console.error(`Error al cargar la ruta: ${url}`, xhr.status, xhr.statusText);
+                $container.html('<p>Error 404: El contenido no se pudo cargar.</p>'); // Fallback
+
+            } else {
+
+                console.log(`Contenido cargado desde: ${url}`);
+
+                //  -----  Cambiamos el TITLE de la página  -----
+                document.title = title;
+
+                //  -----  cambiamos la URL de la página  -----
+                const newUrl = `${base}${path}`;
+                history.pushState(null, '', newUrl);
+                console.log(`URL actualizada a: ${newUrl}`);
+
+                //  -----  cambiamos el FAVICON de la página  -----
+                let $favicon = $('link[rel~="icon"]');
+
+                //  -----  Si No existe el favicon lo crea  -----
+                if ($favicon.length === 0) $favicon = $('<link rel="icon" type="image/x-icon">').appendTo('head');
+
+                //  -----  Cambia la ruta del favicon con una linea de tiempo para no ser cacheado  -----
+                $favicon.attr('href', `${favicon}?t=${new Date().getTime()}`);
 
 
-    //  ---------------------------------------------------------------
-    //  ----------  Carga de las Fuentes y Hojas de Estilos  ----------
-    //  ---------------------------------------------------------------
-    function loadCss() {
+                //  -----  Cargar script de las secciones  -----
+                if (scriptFile) {
+                    loadScriptIfExists(scriptFile);
+                }
 
-        const head = $("head");
-        head.append(`<link rel="stylesheet" href=${allCss} />`);
-        head.append(`<link rel="stylesheet" href=${poppinsCss} />`);
-        head.append(`<link rel="stylesheet" href=${resetCss} />`);
-        head.append(`<link rel="stylesheet" href=${scrollCss} />`);
-        head.append(`<link rel="stylesheet" href=${stylesCss} />`);
-        head.append(`<link rel="stylesheet" href=${responsiveCss} />`);
-        head.append(`<link rel="stylesheet" href=${loaderCss} />`);
-    }
-
-
-    //  -----------------------------------------------------------------
-    //  ----------  Carga del HTML en el index.html principal  ----------
-    //  -----------------------------------------------------------------
-    function loadHtml(urlHtml) {
-
-        $layoutContent.load(urlHtml, function (response, status, xhr) {
-
-            if (status === "error") console.error(`Error al cargar el contenido: ${xhr.status} ${xhr.statusText}`);
-
-            else console.log("Contenido cargado correctamente.");
-
+            }
         });
     }
 
 
-    //  ---------------------------------------------------------------
-    //  ----------  Carga el Mapa de la Página de Contactos  ----------
-    //  ---------------------------------------------------------------
 
-    function loadMapa() {
+    //  ------------------------------------------------------------------
+    //  ----------  Función que Carga un Script si este Existe  ----------
+    //  ------------------------------------------------------------------
 
-        const $iframe = $(".contact__iframe");
-        const $loader = $(".loader");
+    function loadScriptIfExists(scriptUrl) {
 
-        console.log('iframe', $iframe);
-        console.log('loader', $loader);
+        const script = `${scriptUrl}?t=${new Date().getTime()}`;
 
-        //$loader.css('display', 'grid');
-        //$loader.show();
-        //$iframe.css('display', 'none');
-        $iframe.hide();
+        return $.ajax({
 
+            url: script,
+            type: 'HEAD', // Verifica si el script existe
 
-        setTimeout(() => {
-            //$loader.css('display', 'none');
-            $loader.remove();
-            //$iframe.css('display', 'block');
-            $iframe.show();
-        }, 5000);
+            success: function () {
+
+                console.log(`El script ${script} existe. Procediendo a cargarlo...`);
+
+                $.getScript(script)
+                    .done(function () {
+                        console.log(`Script cargado exitosamente: ${script}`);
+                    })
+                    .fail(function (jqxhr, settings, exception) {
+                        console.error(`Error al cargar el script ${script}:`, exception);
+                    });
+            },
+            error: function () {
+                console.warn(`El script ${script} no existe. No se cargará.`);
+            }
+        });
     }
 
+
+    //  ------------------------------------------------
+    //  ----------  Cargar contenido inicial  ----------
+    //  ------------------------------------------------
+    const initialPath = window.location.pathname.replace(base, '');
+    const initialSection = allSections.find(section => section.path === initialPath);
+
+    if (initialSection) {
+
+        loadContent(
+            $layoutContent,
+            initialSection.url,
+            initialSection.title,
+            initialSection.path,
+            initialSection.favicon,
+            initialSection.script
+        );
+    }
+
+    else {
+
+        loadContent(
+            $layoutContent,
+            `${base}/home/index.html`,
+            'Maquetación Web 1 - Portafolio',
+            '/home/index.html',
+            `${base}/assets/favicon/css3-favicon.ico`,
+            //  script
+        );
+    }
 
 
     //  -----------------------------------------------------------
     //  ----------  Manejador de clics para los enlaces  ----------
     //  -----------------------------------------------------------
     $(document).on('click', 'a[id]', function (event) {
-
+        
         event.preventDefault(); // Previene el comportamiento predeterminado
 
-        //loadJs();
+        const $this = $(this); // Convertimos el elemento a un objeto jQuery
+        
+        const id = $this.attr('id');    //  Obtenemos el id
 
-        const id = $(this).attr('id');
+        const section = allSections.find(sec => sec.id === id);
 
         // Elimina la clase 'menu__link--active' de todos los enlaces del menú
         $('a.menu__link--active').removeClass('menu__link--active');
 
+        // Agrega la clase 'menu__link--active' al enlace clicado
+        $this.addClass('menu__link--active');
 
-        if (id === 'home') {
-            document.title = 'Maquetación Web 1 - Portafolio';
-            history.pushState(null, '', homeHtml);
-            loadHtml(homeHtml);
-            $(this).addClass('menu__link--active');
-
+        if (section) {
+            console.log(`Clic en: ${id}`);
+            loadContent(
+                $layoutContent,
+                section.url,
+                section.title,
+                section.path,
+                section.favicon,
+                section.script
+            );
         }
+    });
 
-        if (id === 'sobreMi') {
-            document.title = 'Sobre Mí';
-            history.pushState(null, '', sobreMiHtml);
-            loadHtml(sobreMiHtml);
-            $(this).addClass('menu__link--active');
+    
+
+    //  ----------------------------------------------------------
+    //  ----------  Manejar retrocesos en el historial  ----------
+    //  ----------------------------------------------------------
+    window.addEventListener('popstate', function () {
+
+        console.log('Navegación en el historial detectada:', window.location.pathname);
+
+        const matchedSection = allSections.find(section => section.path === window.location.pathname.replace(base, ''));
+
+        if (matchedSection) {
+            loadContent(
+                $layoutContent,
+                matchedSection.url,
+                matchedSection.title,
+                matchedSection.path,
+                matchedSection.favicon,
+                matchedSection.script
+            );
+
+        } else {
+            $layoutContent.load(`${base}/home/index.html`);
         }
-
-        if (id === 'curriculum') {
-            document.title = 'Curriculum';
-            history.pushState(null, '', curriculumHtml);
-            loadHtml(curriculumHtml);
-            $(this).addClass('menu__link--active');
-        }
-
-        if (id === 'portafolio') {
-            document.title = 'Portafolio';
-            history.pushState(null, '', portafolioHtml);
-            loadHtml(portafolioHtml);
-            $(this).addClass('menu__link--active');
-        }
-
-        if (id === 'blog') {
-            document.title = 'Blog';
-            history.pushState(null, '', blogHtml);
-            loadHtml(blogHtml);
-            $(this).addClass('menu__link--active');
-        }
-
-        if (id === 'contacto') {
-            document.title = 'Contacto';
-            history.pushState(null, '', contactoHtml);
-            loadHtml(contactoHtml);
-            $(this).addClass('menu__link--active');
-            loadMapa();
-
-        }
-
     });
 
 
@@ -173,18 +203,4 @@ $(document).ready(function () {
     });
 
 
-    //  ----------------------------------------------------------
-    //  ----------  Manejar retrocesos en el historial  ----------
-    //  ----------------------------------------------------------
-    window.addEventListener('popstate', function (event) {
-
-        document.title = 'Maquetación Web 1 - Portafolio';
-        history.pushState(null, '', homeHtml);
-        //history.replaceState(null, '', window.location.href);
-        loadHtml(homeHtml);
-    });
-
-
 });
-
-
