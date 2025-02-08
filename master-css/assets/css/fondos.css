@@ -6,21 +6,21 @@
 
 
 /*  -----  Fondos  -----  */
+.fondos__title {
+    font-size: 24px;
+}
 
-.container {
+.fondos__container {
     width: 100%;
-    min-height: 100vh; /* Ocupa al menos la altura de la ventana */
-    background: url(localhost/udemy.antonydev.tech/master-css/assets/imagenes/fondo1.jpeg);
-    background-attachment: fixed;
-    background-size: 100% 100%;
-    /* background-color: aqua; */
-    background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
-    background-position: center; /* Centra la imagen */
+    min-height: 100vh;
+    background-image: url('/udemy.antonydev.tech/master-css/assets/imagenes/fondo1.jpeg');
+    background-attachment: cover;
+    background-size: cover;
+    background-position: center;
 }
 
 
-
-#caja {
+#fondos__caja {
     border: 5px solid black;
     padding: 10px;
     background-color: rgba(0, 68, 255, 0.507);
@@ -33,8 +33,14 @@
     /*vertical-align: top;*/
 }
 
-h2 {
-    color: red;
-    background: black;
-    border: 5px solid red;
+.fondos__subtitle {
+    font-size: 24px;
+    text-align: center;
+}
+
+.fondos__parrafo {
+    font-size: 14px;
+    text-align: justify;
+    color: #222;
+    margin: 20px;
 }

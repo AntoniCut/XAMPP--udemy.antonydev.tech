@@ -1,19 +1,19 @@
-//  ------------------------------------------------
-//  ----------  /udemy.antonydev.tech/  ------------
-//  ----------  /master-css/  ----------------------
-//  ----------  /assets/js/main.js  ----------------
-//  ------------------------------------------------
+//  ----------------------------------------------
+//  ----------  /udemy.antonydev.tech/  ----------
+//  ----------  /master-css/  --------------------
+//  ----------  /main.js  ------------------------
+//  ----------------------------------------------
 
 
-import { sectionHtml } from './section-html.js';
-import { sectionCss } from './section-css.js';
-import { sectionSass } from './section-sass.js';
-import { sectionLess } from './section-less.js';
-import { sectionResponsive } from './section-responsive.js';
-import { sectionFlexBox } from './section-flexbox.js';
-import { sectionGridLayout } from './section-gridlayout.js';
-import { sectionBootstrap } from './section-bootstrap.js';
-
+import { sectionHtml } from '/udemy.antonydev.tech/master-css/assets/js/section-html.js';
+import { sectionCss } from '/udemy.antonydev.tech/master-css/assets/js/section-css.js';
+import { sectionSass } from '/udemy.antonydev.tech/master-css/assets/js/section-sass.js';
+import { sectionLess } from '/udemy.antonydev.tech/master-css/assets/js/section-less.js';
+import { sectionResponsive } from '/udemy.antonydev.tech/master-css/assets/js/section-responsive.js';
+import { sectionFlexBox } from '/udemy.antonydev.tech/master-css/assets/js/section-flexbox.js';
+import { sectionGridLayout } from '/udemy.antonydev.tech/master-css/assets/js/section-gridlayout.js';
+import { sectionBootstrap } from '/udemy.antonydev.tech/master-css/assets/js/section-bootstrap.js';
+import { sectionRepasoJavaScript } from '/udemy.antonydev.tech/master-css/assets/js/section-repaso-javascript.js';
 
 
 $(function () {
@@ -32,17 +32,16 @@ $(function () {
         ...sectionResponsive,
         ...sectionFlexBox,
         ...sectionGridLayout,
-        ...sectionBootstrap
+        ...sectionBootstrap,
+        ...sectionRepasoJavaScript
     ];
-
-
 
 
     //  ----------------------------------------------------------------------------------------------------
     //  ----------  Función que Carga el HTML Dinamicamente utilizando la función load de jQuery  ----------
     //  ----------------------------------------------------------------------------------------------------
 
-    function loadContent($container, url, title, path, favicon, cssFile, scriptFile) {
+    function loadContent($container, url, title, path, favicon, scriptFiles) {
 
         $container.load(url, function (response, status, xhr) {
 
@@ -71,43 +70,10 @@ $(function () {
                 //  -----  Cambia la ruta del favicon con una linea de tiempo para no ser cacheado  -----
                 $favicon.attr('href', `${favicon}?t=${new Date().getTime()}`);
 
-
-                //  -----  Cargamos los ESTILOS de la página  -----
-
-                if (cssFile) {
-
-                    //  -----  Comprobación de la URL que se va a cargar  -----
-                    //alert(cssFile); 
-
-                    //  ----- Eliminar cualquier hoja de estilos existente que coincida  -----
-                    //  ----- con el patrón base del proyecto, excepto dtyles.css        -----
-                    $('link[rel="stylesheet"]').not('[href*="styles.css"]').remove();
-
-                    //  -----  Asegurarse de que siempre esté cargada la hoja de estilos styles.css  -----
-                    if ($('link[href*="styles.css"]').length === 0) {
-                        $('<link rel="stylesheet">')
-                            .attr('href', `${base}/assets/css/styles.css?t=${new Date().getTime()}`)
-                            .appendTo('head');
-                    }
-
-                    //  -----  Agregar la nueva hoja de estilos con un timestamp para evitar caché  -----
-                    $('<link rel="stylesheet">')
-                        .attr('href', `${cssFile}?t=${new Date().getTime()}`)
-                        .appendTo('head');
-
-                    //  -----  Agregar la hoja de estilos de Bootstrap 4  -----
-                    $('<link rel="stylesheet">')
-                        .attr('href', `${base}/assets/bootstrap-4/css/bootstrap.min.css?t=${new Date().getTime()}`)
-                        .appendTo('head');
-                }
-
-
                 //  -----  Cargar script de las secciones  -----
-                if (scriptFile) {
-                    loadScriptIfExists(scriptFile);
-                }
-
-
+                if (scriptFiles) 
+                    scriptFiles.forEach(scriptUrl => loadScriptsIfExists(scriptUrl));
+                          
             }
         });
     }
@@ -118,27 +84,30 @@ $(function () {
     //  ----------  Función que Carga un Script si este Existe  ----------
     //  ------------------------------------------------------------------
 
-    function loadScriptIfExists(scriptUrl) {
-        
-        const script = `${scriptUrl}?t=${new Date().getTime()}`;
+    function loadScriptsIfExists(scriptUrl) {
+
+        const script = scriptUrl;
 
         return $.ajax({
-            
+
             url: script,
             type: 'HEAD', // Verifica si el script existe
-            
+
             success: function () {
-                
+
                 console.log(`El script ${script} existe. Procediendo a cargarlo...`);
-                
+
                 $.getScript(script)
+
                     .done(function () {
                         console.log(`Script cargado exitosamente: ${script}`);
                     })
+
                     .fail(function (jqxhr, settings, exception) {
                         console.error(`Error al cargar el script ${script}:`, exception);
                     });
             },
+
             error: function () {
                 console.warn(`El script ${script} no existe. No se cargará.`);
             }
@@ -161,8 +130,7 @@ $(function () {
             initialSection.title,
             initialSection.path,
             initialSection.favicon,
-            initialSection.styles,
-            initialSection.script
+            initialSection.scripts
         );
     }
 
@@ -173,8 +141,7 @@ $(function () {
             `${base}/aprendiendo-css/index.html`,
             'Master de CSS',
             '/aprendiendo-css/index.html',
-            `${base}/assets/favicon/css3-favicon.ico`,
-            `${base}/assets/css/styles.css`
+            `${base}/assets/favicon/css3-favicon.ico`
         );
     }
 
@@ -199,8 +166,7 @@ $(function () {
                 section.title,
                 section.path,
                 section.favicon,
-                section.styles,
-                section.script
+                section.scripts
             );
         }
     });
@@ -222,8 +188,7 @@ $(function () {
                 matchedSection.title,
                 matchedSection.path,
                 matchedSection.favicon,
-                matchedSection.styles,
-                matchedSection.script
+                matchedSection.scripts
             );
 
         } else {

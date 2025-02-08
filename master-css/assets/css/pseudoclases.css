@@ -7,25 +7,25 @@
 
 /*  -----  Pseudoclases  -----  */
 
-.container {
-    width: 100%;
+.pseudoclases__title {
+    font-size: 24px;
 }
 
-ul li {
+ul .pseudoclases__item {
     font-size: 20px;
 }
 
-ul li:first-child {
+ul .pseudoclases__item:first-child {
     color: purple;
     font-weight: bold;
 }
 
-ul li:nth-child(2) {
+ul .pseudoclases__item:nth-child(2) {
     color: orange;
     font-weight: bold;
 }
 
-ul li:last-child {
+ul .pseudoclases__item:last-child {
     color: gray;
     font-weight: bold;
 }
@@ -53,11 +53,11 @@ ul li:last-child {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-input[type="text"] {
+.pseudoclases__input {
     margin-top: 20px;
     padding: 10px;
 }
 
-input[type="text"]:focus {
+.pseudoclases__input:focus {
     border: 4px dashed red;
 }

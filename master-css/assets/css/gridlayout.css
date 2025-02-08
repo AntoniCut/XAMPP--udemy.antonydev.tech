@@ -7,6 +7,10 @@
 
 /*  -----  GridLayout  -----  */
 
+.grid__title {
+    font-size: 24px;
+}
+
 #website-areas * {
     margin: 0px;
     padding: 0px;
@@ -48,7 +52,6 @@
     grid-area: menu;
     background: lightblue;
     color: black;
-    /*  height: 70px;  */
     line-height: 70px;
 }
 
@@ -63,7 +66,6 @@
 #website-areas #contenido {
     grid-area: contenido;
     background: #eee;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 25px;
@@ -82,8 +84,9 @@
     color: white;
 }
 
-#website-areas #pie-pagina {
+#website-areas .grid__pie-pagina {
     grid-area: pie;
+    line-height: 70px;
     background-color: black;
     color: white;
 }
@@ -98,9 +101,7 @@
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: 150px 70px 1fr 70px;
-
     width:  75%;
-    /*height: 100vh;  */  /*  vh - altura del navegador  */
     height: 1000px;
     margin: 0px auto;
     border: 1px solid #ccc;
@@ -119,7 +120,6 @@
     grid-column: 1 / 6;
     background: lightblue;
     color: black;
-    /*  height: 70px;  */
     line-height: 70px;
 }
 
@@ -134,7 +134,6 @@
 #website #contenido {
     grid-column: 1 / 5;
     background: #eee;
-
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 25px;
@@ -152,8 +151,9 @@
     color: white;
 }
 
-#website #pie-pagina {
+#website .grid__pie-pagina {
     grid-column: 1 / 6;
+    line-height: 70px;
     background-color: black;
     color: white;
 }

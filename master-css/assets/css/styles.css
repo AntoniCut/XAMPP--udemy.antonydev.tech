@@ -5,11 +5,16 @@
 /*  ----------------------------------------------  */
 
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    
     margin: auto;
     width: 100%;
-    min-height: 100vh; /* Altura mínima de la pantalla */
+    min-height: 100vh; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,70 +27,13 @@ hr {
     background-color: cornflowerblue;
 }
 
-/*  **********  Menú de Navegación  **********  */
-
-.layout__navbar {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #333;
-    padding: 10px 20px;
-    /* text-align: center; */
-}
-
-.navbar__list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.navbar__item {
-    position: relative; 
-}
-
-.navbar__item > a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-    transition: background-color 0.3s ease;
-}
-
-.navbar__item > a:hover {
-    background-color: #555;
-}
-
-/* Estilo del submenú */
-.navbar-submenu__list {
-    list-style-type: none;
-    padding: 10px 0;
-    margin: 0;
-    position: absolute;
-    top: 100%; /* Posicionar debajo del elemento principal */
-    left: 0;
-    background-color: #444;
-    /* min-width: 250px; */
-    display: none; /* Ocultar el submenú por defecto */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-}
-
-.navbar-submenu__item a {
-    color: #fff;
-    text-decoration: none;
-    padding: 10px 15px;
-    display: block;
-}
-
-.navbar-submenu__item a:hover {
-    background-color: #555;
-}
-
-/* Mostrar el submenú al hacer hover sobre el elemento principal */
-.navbar__item:hover .navbar-submenu__list {
-    display: block;
+.header__title {
+    font-size: 36px; 
+    color: #00bfff; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+    font-weight: bold;
+    text-align: center; 
+    margin: 20px 0; 
 }
 
 
@@ -97,7 +45,7 @@ hr {
     padding: 0 60px;
     padding-top: 40px;
     padding-bottom: 40px;
-    margin-bottom: 50px;
+    margin: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;

@@ -9,10 +9,6 @@
 const base = '/udemy.antonydev.tech/master-css';
 const favicon = `${base}/assets/favicon/css3-favicon.ico`;
 
-//  -----  Rutas de las hojas de estilos  -----
-const stylesResponsive = `${base}/assets/css/responsive.css`;
-
-
 //  -----  Array de objetos con los IDs y las rutas correspondientes  -----
 const sectionResponsive = [
 
@@ -21,8 +17,7 @@ const sectionResponsive = [
         url: `${base}/aprendiendo-responsive/index.html`,
         title: 'Aprendiendo Responsive',
         path: '/aprendiendo-responsive/index.html',
-        favicon: favicon,
-        styles: stylesResponsive
+        favicon: favicon
     }
     
 ];

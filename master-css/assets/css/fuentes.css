@@ -7,18 +7,22 @@
 
 /*  -----  Fuentes  -----  */
 
+.fuentes__title {
+    font-size: 24px;
+}
+
 @font-face{
     font-family: Mansalva;
     src: url(udemy.antonydev.tech/master-css/assets/fonts/mansalva/Mansalva-Regular.ttf);
 }
 
 
-h3{
+.fuentes__subtitle {
     font-family: Mansalva, "comic Sans MS";
     font-size: 35px;
 }
 
-p{
+.fuentes__parrafo {
     font-family: sans-serif;
     font-size: 18px;
     font-weight: bold;

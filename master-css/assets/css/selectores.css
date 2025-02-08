@@ -7,50 +7,54 @@
 
 /*  -----  SELECTORES  -----  */
 
-#titulo {
-    background: red;
+.selectores__titulo {
+    font-size: 24px;
     color: gray;
     padding: 10px;
-}
-
-a {
-    font-size: 18px;
-    color: green;
-    text-decoration: none;
-}
-
-footer a {
-    color: red;
-}
-
-
-#descripcion,
-#titulo {
-    border: 5px solid black;
-    padding: 15px;
-}
-
-#titulo {
     background: blue;
     border: dashed;
 }
 
+#selectores__menu > li > a {
+    font-size: 18px;
+    color: red;
+    text-decoration: none;
+}
 
-.parrafo {
+#selectores__menu > li > ul > li > a {
+    font-size: 18px;
+    color: green;
+    text-decoration: none;
+    margin-left: 30px;
+}
+
+.selectores__footer a {
+    color: blueviolet;
+}
+
+.selectores__title,
+#descripcion {
+    border: 5px solid black;
+    padding: 15px;
+}
+
+.selectores__parrafo {
     font-style: italic;
     font-weight: bold;
+    padding: 50px;
 }
 
-.parrafo1, .parrafo3 {
+.selectores__parrafo1, 
+.selectores__parrafo3 {
     background: green;
     color: white;
-    padding: 10px;
+    padding: 30px;
 }
 
-.parrafo3 {
+.selectores__parrafo3 {
     background-color: orange;
     color: black;
-    padding: 10px;
+    padding: 30px;
     ;
 }
 
@@ -58,7 +62,6 @@ footer a {
     border: 5px solid blue;
     margin-top: 15px;
     margin-bottom: 15px;
-    ;
     padding: 20px;
 
 }
@@ -81,13 +84,6 @@ input[type="submit"] {
     text-transform: uppercase;
     border: 1px solid black;
     cursor: pointer;
-}
-
-
-#menu > li > a {
-    font-size: 18px;
-    color: red;
-    text-decoration: none;
 }
 
 #saludo h2 {

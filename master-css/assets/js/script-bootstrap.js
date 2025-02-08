@@ -7,25 +7,27 @@
 
 //  -----  Funcionalidades y Plugins de Bootstrap 4  -----
 
-alert('script bootstrap cargado');
+(function () {
 
-let contador = 0;
-setInterval(() => {
+    let contador = 0;
+    setInterval(() => {
 
-    if (contador < 100) {
-        contador += 10;
-        const barra = document.querySelector("#barra-progreso");
-        barra.style.width = contador + '%';
-        barra.innerHTML = contador + '%';
-    }
+        if (contador < 100) {
+            contador += 10;
+            const barra = document.querySelector("#barra-progreso");
+            barra.style.width = contador + '%';
+            barra.innerHTML = contador + '%';
+        }
 
-}, 1000);
+    }, 1000);
 
 
-$(".carousel").carousel({
-    interval: 3000
-});
+    $(".carousel").carousel({
+        interval: 3000
+    });
 
-$(".btn-tool").tooltip();
+    $(".btn-tool").tooltip();
 
-$(".btn-pop").popover();
+    $(".btn-pop").popover();
+
+})();

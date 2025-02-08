@@ -9,11 +9,12 @@
 const base = '/udemy.antonydev.tech/master-css';
 const favicon = `${base}/assets/favicon/bootstrap-favicon.ico`;
 
-//  -----  Rutas de las hojas de estilos  -----
-const stylesBootstrapIndex = `${base}/assets/css/styles-bootstrap.css`;
-
 //  -----  Rutas de los script  -----
-const scriptBootstrap = `${base}/assets/js/script-bootstrap.js`;
+const scriptsBootstrap = [
+    `${base}/assets/bootstrap-4/js/bootstrap.min.js`,
+    `${base}/assets/bootstrap-4/js/cdn.jsdelivr.net_npm_popper.js@1.16.0_dist_umd_popper.min.js`,
+    `${base}/assets/js/script-bootstrap.js`
+];
 
 
 //  -----  Array de objetos con los IDs y las rutas correspondientes  -----
@@ -25,8 +26,7 @@ const sectionBootstrap = [
         title: 'Aprendiendo Bootstrap 4',
         path: '/aprendiendo-bootstrap/index.html',
         favicon: favicon,
-        styles: stylesBootstrapIndex,
-        script: ''
+        scripts: []
     },
 
     {
@@ -35,8 +35,7 @@ const sectionBootstrap = [
         title: 'Herramientas en Bootstrap 4',
         path: '/aprendiendo-bootstrap/herramientas/index.html',
         favicon: favicon,
-        styles: stylesBootstrapIndex,
-        script: ''
+        scripts: []
     },
 
     {
@@ -45,11 +44,9 @@ const sectionBootstrap = [
         title: 'Componentes en Bootstrap 4',
         path: '/aprendiendo-bootstrap/componentes/index.html',
         favicon: favicon,
-        styles: stylesBootstrapIndex,
-        styles: scriptBootstrap
+        scripts: scriptsBootstrap
     }
-    
-    
+        
 ];
 
 

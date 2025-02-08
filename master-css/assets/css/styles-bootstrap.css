@@ -5,8 +5,17 @@
 /*  --------------------------------------------------------  */
 
 
-/*  -----  Bootstrap 4  -----  */
+/*  -----  Herramientas - Bootstrap 4  -----  */
 
+.herramientas-bootstrap__title {
+    font-size: 24px;
+}
+
+.herramientas-bootstrap__subtitle {
+    text-align: center;
+}
+
+/*  -----  Componentes - Bootstrap 4  -----  */
 #menu {
     height: 50px;
 }
@@ -38,6 +47,9 @@ section h2 {
     height: calc(250px / 3);
 }
 
+
+/*  -----  responsive  -----  */
+
 @media (max-width: 768px) {
     #menu {
         height: auto;
@@ -45,14 +57,10 @@ section h2 {
 }
 
 #slider {
-    height: 100px;
+    height: 800px;
     overflow: hidden;
 }
 
-#slider > img {
-    height: 100px;
-}
-
 .carousel-img {
-    height: 400px;
+    height: 800px;
 }

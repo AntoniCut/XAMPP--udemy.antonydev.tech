@@ -12,7 +12,6 @@
     flex-wrap: wrap;
     background-color: #333;
     padding: 10px 20px;
-    /* text-align: center; */
 }
 
 .navbar__list {
@@ -20,6 +19,7 @@
     margin: 0;
     padding: 0;
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
 }
 
@@ -28,7 +28,7 @@
 }
 
 .navbar__item > a {
-    color: #fff;
+    color: #ffffff;
     text-decoration: none;
     padding: 10px 15px;
     display: block;
@@ -36,20 +36,21 @@
 }
 
 .navbar__item > a:hover {
+    color: #ffffff;
     background-color: #555;
 }
 
-/* Estilo del submenú */
+
 .navbar-submenu__list {
     list-style-type: none;
+    text-align: left;
     padding: 10px 0;
     margin: 0;
     position: absolute;
-    top: 100%; /* Posicionar debajo del elemento principal */
+    top: 100%; 
     left: 0;
     background-color: #444;
-    /* min-width: 250px; */
-    display: none; /* Ocultar el submenú por defecto */
+    display: none;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     z-index: 1000;
 }
@@ -62,12 +63,10 @@
 }
 
 .navbar-submenu__item a:hover {
+    color: #ffffff;
     background-color: #555;
 }
 
-/* Mostrar el submenú al hacer hover sobre el elemento principal */
 .navbar__item:hover .navbar-submenu__list {
     display: block;
-}
-
-
+} 

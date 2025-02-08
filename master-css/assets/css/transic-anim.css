@@ -7,6 +7,10 @@
 
 /*  -----  Transiciones y Animaciones  -----  */
 
+.transic-anim__title {
+    font-size: 24px;
+}
+
 #boton {
     display: block;
     padding: 20px;
